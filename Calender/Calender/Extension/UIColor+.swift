@@ -2,9 +2,6 @@
 //  UIColor+.swift
 //  HeartManager
 //
-//  Created by 中西康之 on 2019/05/15.
-//  Copyright © 2019 中西康之. All rights reserved.
-//
 
 import UIKit
 

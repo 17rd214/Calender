@@ -16,16 +16,8 @@ class CalendarViewController: UIViewController, ViewLogic{
     private var requestForCalendar: RequestForCalendar?
    
     
-    struct keep_data {//入力されたデータを保存する場所(一ヶ月単位)
-        var keep_days_goraku = Array(repeating:0,count:31)
-        var keep_days_nitiyou  = Array(repeating:0,count:31)
-        var koteihi = 0
-        var year = 0
-        var month = 0
-    }
     
-    
-    var data_string = [keep_data]()     //配列作成
+  
     
     
     
@@ -62,16 +54,18 @@ class CalendarViewController: UIViewController, ViewLogic{
     
     
     
-    @IBAction func data_renew(_ sender: Any) {
-        let i = Check_data_string()
+    @IBAction func data_renew(_ sender: Any) {//更新動作
+        let i = Check_data_string()  //過去にその年、月の有無確認
         
-        if(i > 0){
-            data_string[i].keep_days_goraku[Uke.hiduke - 1] = Uke.goraku
-            data_string[i].keep_days_nitiyou[Uke.hiduke - 1] = Uke.nitiyo
+       
+        
+        if(i > 0){//更新ボタンを押した年、月に入力された値が入る
+            Savedata.save_string[i].keep_days_goraku[Uke.hiduke - 1] = Uke.goraku
+            Savedata.save_string[i].keep_days_nitiyou[Uke.hiduke - 1] = Uke.nitiyo
             print(Uke.nitiyo)
-        }       //print(data_string[i].keep_days_goraku[Uke.hiduke - 1])
-        Uke.goraku = 0
-        Uke.nitiyo = 0
+        }
+        Uke.goraku = 0   //入力値リセット
+        Uke.nitiyo = 0   //入力値リセット
     }
     
     //MARK: Initialize
@@ -93,7 +87,7 @@ class CalendarViewController: UIViewController, ViewLogic{
         configure()
         settingLabel()
         getToday()
-        set_data()
+        set_data()      //保存用の領域を追加
     }
     
     //MARK: Setting
@@ -123,28 +117,30 @@ class CalendarViewController: UIViewController, ViewLogic{
         thisYear = date.year1
         thisMonth = date.month1
         today = date.day1
-        now_year = date.year1
-        now_month = date.month1
+        now_year = date.year1   //現在の年を記憶
+        now_month = date.month1     //現在の月を記憶
     }
 
-    //データテーブルを作成
-    func set_data(){
+    
+    func set_data(){//データの保存領域を追加
         //過去に同じデータがないか確認
         if(Check_data_string() > 0){
             return
         }
         
-        data_string.append(keep_data(keep_days_goraku: Array(repeating:0,count:31), keep_days_nitiyou: Array(repeating:0,count:31), koteihi: 0, year: 0, month: 0))
+        Savedata.save_string.append(Savedata.Datasave(keep_days_goraku: Array(repeating:0,count:31), keep_days_nitiyou: Array(repeating:0,count:31), koteihi: 0, year: 0, month: 0))
         
-        data_string[keep_data_count].year = now_year
-        data_string[keep_data_count].month = now_month
+        Savedata.save_string[keep_data_count].year = now_year
+        Savedata.save_string[keep_data_count].month = now_month
         keep_data_count += 1
-        print(data_string[keep_data_count - 1].month)
+        print(Savedata.save_string[keep_data_count - 1].month)
         print(keep_data_count)
-        if(data_string[keep_data_count - 1].month == thisMonth){
-            data_string[keep_data_count - 1] = data_string[0]
-            print("can")
-            //remove(data_string[])
+        
+        //thisYear,Monthの時のみデータを写す(改善の余地あり)
+        if(Savedata.save_string[keep_data_count - 1].month == thisMonth && Savedata.save_string[keep_data_count - 1].year == thisYear){
+            Savedata.save_string[keep_data_count - 1] = Savedata.save_string[0]
+            //print("can") //確認用
+            //remove(Savedata.save_string[])
         }
     }
     
@@ -155,7 +151,7 @@ class CalendarViewController: UIViewController, ViewLogic{
             //print(i)
             //print("check")
            i += 1
-            if(data_string[i].year == now_year && data_string[i].month == now_month ){
+            if(Savedata.save_string[i].year == now_year && Savedata.save_string[i].month == now_month ){
                 return i  //あった場合のその場所
                 
             }
@@ -186,8 +182,8 @@ extension CalendarViewController {
         title = "\(String(moveDate.year2))年\(String(moveDate.month2))月"
         isToday = thisYear == moveDate.year2 && thisMonth == moveDate.month2 ? true : false
         collectionView.reloadData()
-        now_year = moveDate.year2
-        now_month = moveDate.month2
+        now_year = moveDate.year2           //現在の年を記憶
+        now_month = moveDate.month2         //現在の月を記憶
     }
     
 }
@@ -227,7 +223,10 @@ extension CalendarViewController: UICollectionViewDataSource {
             cell.selectedBackgroundView = nil
         default:
             if(daysArray2[row] != ""){
-                daysArray2[row] = daysArray2[row] + "\n" +  String(data_string[Check_data_string()].keep_days_goraku[days] + data_string[Check_data_string()].keep_days_nitiyou[days])
+                
+                //daysArray2に入力データを追加する
+                
+                daysArray2[row] = daysArray2[row] + "\n" +  String(Savedata.save_string[Check_data_string()].keep_days_goraku[days] + Savedata.save_string[Check_data_string()].keep_days_nitiyou[days])
                 days += 1
             }
             label.text = daysArray2[row]

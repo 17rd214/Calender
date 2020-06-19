@@ -16,21 +16,21 @@ class Inputform: UIViewController {
     
     @IBOutlet weak var Input_syuppi: UITextField!
     
-    
+    //ボタンを押したら保存
     @IBAction func keep_gorakuhi(_ sender: Any) {
         Uke.goraku = Int(Input_syuppi.text!)!
         Uke.hiduke = Int(Input_date.text!)!
-        Input_syuppi.text = "保存しました"
+        //Input_syuppi.text = "保存しました"
         //Thread.sleep(forTimeInterval: 1.0)
         Input_syuppi.text = ""
         
     }
     
-    
+    //ボタンを押したら保存
     @IBAction func keep_nitiyohi(_ sender: Any) {
         Uke.nitiyo = Int(Input_syuppi.text!)!
         Uke.hiduke = Int(Input_date.text!)!
-        Input_syuppi.text = "保存しました"
+        //Input_syuppi.text = "保存しました"
         //Thread.sleep(forTimeInterval: 1.0)
         Input_syuppi.text = ""
     }

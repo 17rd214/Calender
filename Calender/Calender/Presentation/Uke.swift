@@ -1,12 +1,11 @@
 //
-//  uke.swift
+//  Uke.swift
 //  Calender
 //
 //  Created by masa.miura on 2020/06/18.
-//  Copyright © 2020 中西康之. All rights reserved.
 //
-
-import UIKit
+//Inputformで入力された数値を受け取る変数
+import Foundation
 class Uke{
     static var goraku: Int = 0
     static var nitiyo: Int = 0

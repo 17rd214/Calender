@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E24540E249C40B4003DC5ED /* Savedata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E24540D249C40B4003DC5ED /* Savedata.swift */; };
 		1EEDD4DD249B5C840066C5BE /* Inputform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEDD4DC249B5C840066C5BE /* Inputform.swift */; };
 		1EEDD4DF249B772B0066C5BE /* Uke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEDD4DE249B772B0066C5BE /* Uke.swift */; };
 		BCB41909228C3E180094F2CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB41908228C3E180094F2CB /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E24540D249C40B4003DC5ED /* Savedata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savedata.swift; sourceTree = "<group>"; };
 		1EEDD4DC249B5C840066C5BE /* Inputform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inputform.swift; sourceTree = "<group>"; };
 		1EEDD4DE249B772B0066C5BE /* Uke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uke.swift; sourceTree = "<group>"; };
 		BCB41905228C3E180094F2CB /* Calender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calender.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 				BCB4193C228C3E540094F2CB /* CalendarPresenter.swift */,
 				1EEDD4DC249B5C840066C5BE /* Inputform.swift */,
 				1EEDD4DE249B772B0066C5BE /* Uke.swift */,
+				1E24540D249C40B4003DC5ED /* Savedata.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			files = (
 				BCB41942228C3E550094F2CB /* CalendarPresenter.swift in Sources */,
 				BCB41944228C3E550094F2CB /* CalendarController.swift in Sources */,
+				1E24540E249C40B4003DC5ED /* Savedata.swift in Sources */,
 				BCB4190B228C3E180094F2CB /* CalendarViewController.swift in Sources */,
 				BCB4193F228C3E550094F2CB /* CalendarUseCase.swift in Sources */,
 				BCB41940228C3E550094F2CB /* DateItems.swift in Sources */,
