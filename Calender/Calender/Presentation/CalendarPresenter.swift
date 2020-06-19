@@ -10,7 +10,7 @@ class CalendarPresenter: ResponseForCalendar {
     var viewLogic: ViewLogic?
     
     func responseDateManager(response: [String]) {
-        viewLogic?.daysArray = response
+        viewLogic?.daysArray2 = response
     }
     
     func responseNumberOfWeeks(response: Int) {

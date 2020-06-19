@@ -4,17 +4,19 @@ enum DateItems {
     
     enum ThisMonth {
         struct Request {
+            //月を更新するたび値消される？
+           
+            var year1: Int
+            var month1: Int
+            var day1: Int
             
-            var year: Int
-            var month: Int
-            var day: Int
             
             init() {
                 let calendar = Calendar(identifier: .gregorian)
                 let date = calendar.dateComponents([.year, .month, .day], from: Date())
-                year = date.year!
-                month = date.month!
-                day = date.day!
+                year1 = date.year!
+                month1 = date.month!
+                day1 = date.day!
             }
         }
     }
@@ -22,15 +24,15 @@ enum DateItems {
     enum MoveMonth {
         struct Request {
             
-            var year: Int
-            var month: Int
+            var year2: Int
+            var month2: Int
             
             init(_ monthCounter: Int) {
                 let calendar = Calendar(identifier: .gregorian)
                 let date = calendar.date(byAdding: .month, value: monthCounter, to: Date())
                 let newDate = calendar.dateComponents([.year, .month], from: date!)
-                year = newDate.year!
-                month = newDate.month!
+                year2 = newDate.year!
+                month2 = newDate.month!
             }
         }
     }

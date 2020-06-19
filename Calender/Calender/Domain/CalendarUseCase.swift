@@ -17,8 +17,8 @@ class CalendarUseCase: CalendarLogic {
         let firstDayOfWeek = dayOfWeek(year, month, 1)
         let numberOfCells = numberOfWeeks(year, month) * daysPerWeek
         let days = numberOfDays(year, month)
-        let daysArray = alignmentOfDays(firstDayOfWeek, numberOfCells, days)
-        responseForCalendar?.responseDateManager(response: daysArray)
+        let daysArray1 = alignmentOfDays(firstDayOfWeek, numberOfCells, days,year,month)
+        responseForCalendar?.responseDateManager(response: daysArray1)//dayarray2に渡す
     }
     
     func numberOfWeeks(year: Int, month: Int) {
@@ -70,7 +70,9 @@ extension CalendarUseCase {
         return (firstDayOfWeek == 6 && days == 30) || (firstDayOfWeek >= 5 && days == 31)
     }
     
-    private func alignmentOfDays(_ firstDayOfWeek: Int, _ numberOfCells: Int, _ days: Int) -> [String] {
+    
+    //cell内のデータ入力
+    private func alignmentOfDays(_ firstDayOfWeek: Int, _ numberOfCells: Int, _ days: Int, _ year: Int, _ month: Int) -> [String] {
         var daysArray: [String] = []
         var dayCount = 0
         for i in 0 ... numberOfCells {
@@ -84,5 +86,7 @@ extension CalendarUseCase {
         }
         return daysArray
     }
+    
+    //func dys_cost_data(_year: Int, _month)
 
 }
