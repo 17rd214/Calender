@@ -49,43 +49,36 @@ class CalendarViewController: UIViewController, ViewLogic{
         prevMonth()
         set_data()  
         //print("prevbtn")
+        set_zankin()
         days = 0   //daysリセット
     }
     @IBAction func nextBtn(_ sender: UIBarButtonItem) {
         nextMonth()
         set_data()
         //print("nextBtn")
+        set_zankin()
         days = 0    //daysリセット
     }
     
     
     
     @IBAction func data_renew(_ sender: Any) {//更新動作
-        var total_cost = 0
-        days = 0 //daysリセット
+      
+        
         let i = Check_data_string()  //過去にその年、月の有無確認
         
        
         
-        if(i > 0){//更新ボタンを押した年、月に入力された値が入る
+        if(i >= 0){//更新ボタンを押した年、月に入力された値が入る
             Savedata.save_string[i].keep_days_goraku[Uke.hiduke - 1] = Uke.goraku
             Savedata.save_string[i].keep_days_nitiyou[Uke.hiduke - 1] = Uke.nitiyo
             Savedata.save_string[i].koteihi = Uke.koteihi
             Savedata.save_string[i].income = Uke.income
+            Savedata.save_string[i].special = Uke.special
             //print(Uke.nitiyo)
         }
-        Uke.goraku = 0   //入力値リセット
-        Uke.nitiyo = 0   //入力値リセット
-        thismonth_zankin = Uke.income
-        while(days < 31){
-            total_cost += Savedata.save_string[i].keep_days_goraku[days] + Savedata.save_string[i].keep_days_nitiyou[days]
-            
-            days += 1
-        }
-        total_cost += Savedata.save_string[i].koteihi
-        total_cost += Savedata.save_string[i].special
-        thismonth_zankin -= total_cost
-        zankin.text = String(thismonth_zankin)
+        
+        //commonSettingMoveMonth()
     }
     
     //MARK: Initialize
@@ -103,7 +96,7 @@ class CalendarViewController: UIViewController, ViewLogic{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print("Viewdid")
+        //print("Viewdid")
         configure()
         settingLabel()
         getToday()
@@ -144,11 +137,11 @@ class CalendarViewController: UIViewController, ViewLogic{
     
     func set_data(){//データの保存領域を追加
         //過去に同じデータがないか確認
-        if(Check_data_string() > 0){
+        if(Check_data_string() >= 0){//過去にデータあり
             return
         }
         
-        Savedata.save_string.append(Savedata.Datasave(keep_days_goraku: Array(repeating:0,count:31), keep_days_nitiyou: Array(repeating:0,count:31), koteihi: 0, year: 0, month: 0))
+        Savedata.save_string.append(Savedata.Datasave(keep_days_goraku: Array(repeating:0,count:31), keep_days_nitiyou: Array(repeating:0,count:31), koteihi: 0, income: 0, special: 0, year: 0, month: 0))
         
         Savedata.save_string[keep_data_count].year = now_year
         Savedata.save_string[keep_data_count].month = now_month
@@ -156,28 +149,42 @@ class CalendarViewController: UIViewController, ViewLogic{
         print(Savedata.save_string[keep_data_count - 1].month)
         print(keep_data_count)
         
-        //thisYear,Monthの時のみデータを写す(改善の余地あり)
-        if(Savedata.save_string[keep_data_count - 1].month == thisMonth && Savedata.save_string[keep_data_count - 1].year == thisYear){
-            Savedata.save_string[keep_data_count - 1] = Savedata.save_string[0]
-            print("can") //確認用
-            //remove(Savedata.save_string[])
+        
+    }
+    
+    func set_zankin(){
+        var total_cost = 0
+        let i = Check_data_string()
+        Uke.goraku = 0   //入力値リセット
+        Uke.nitiyo = 0   //入力値リセット
+        Uke.income = 0
+        thismonth_zankin = Savedata.save_string[i].income
+        days = 0
+        while(days < 31){
+            total_cost += Savedata.save_string[i].keep_days_goraku[days]
+            total_cost += Savedata.save_string[i].keep_days_nitiyou[days]
+            
+            days += 1
         }
+        total_cost += Savedata.save_string[i].koteihi
+        total_cost += Savedata.save_string[i].special
+        thismonth_zankin -= total_cost
+        zankin.text = String(thismonth_zankin)
     }
     
     //過去に作られたデータがあるか確認
     func Check_data_string() ->Int {
         var i = 0
-        while(i < keep_data_count - 1 ){
+        while(i < keep_data_count  ){
             //print(i)
             //print("check")
-           i += 1
             if(Savedata.save_string[i].year == now_year && Savedata.save_string[i].month == now_month ){
                 return i  //あった場合のその場所
                 
             }
-             
+             i += 1
         }
-        return 0 //過去にデータがなかった
+        return -1 //過去にデータがなかった
     }
 }
 
@@ -243,11 +250,13 @@ extension CalendarViewController: UICollectionViewDataSource {
             cell.selectedBackgroundView = nil
         default:
             if(daysArray2[row] != ""){
-                
+                let i = Check_data_string()
                 //daysArray2に入力データを追加する
+                if(i >= 0 && i < keep_data_count){
                 
-                daysArray2[row] = daysArray2[row] + "\n" +  String(Savedata.save_string[Check_data_string()].keep_days_goraku[days] + Savedata.save_string[Check_data_string()].keep_days_nitiyou[days])
+                daysArray2[row] = daysArray2[row] + "\n" +  String(Savedata.save_string[i].keep_days_goraku[days] + Savedata.save_string[i].keep_days_nitiyou[days])
                 days += 1
+                }
             }
             label.text = daysArray2[row]
             label.numberOfLines = 0

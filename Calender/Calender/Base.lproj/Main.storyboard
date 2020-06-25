@@ -219,5 +219,30 @@
             </objects>
             <point key="canvasLocation" x="1232.8" y="758.77061469265368"/>
         </scene>
+        <!--Graph View Controller-->
+        <scene sceneID="4L4-er-hXr">
+            <objects>
+                <viewController id="iFR-tG-P4m" customClass="GraphViewController" customModule="Calender" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="61T-PM-Bji">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NcQ-RB-DB7" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="144" width="375" height="386"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Sok-ZO-5Mw"/>
+                    </view>
+                    <connections>
+                        <outlet property="pieChartsView" destination="NcQ-RB-DB7" id="Ab5-0r-ArK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nev-th-pUQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1770.4000000000001" y="99.400299850074973"/>
+        </scene>
     </scenes>
 </document>
