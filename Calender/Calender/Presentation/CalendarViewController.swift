@@ -28,6 +28,8 @@ class CalendarViewController: UIViewController, ViewLogic{
     var now_month = 0       //現在いる場所の月
     var days = 0            //keep_days_goraku,nitiyouを参照するための変数(0~31まで変化)
     
+    var thismonth_zankin = 0
+    
     private let date = DateItems.ThisMonth.Request()
     private let daysPerWeek = 7
     private var thisYear: Int = 0
@@ -39,6 +41,10 @@ class CalendarViewController: UIViewController, ViewLogic{
     
     //MARK: UI Parts
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    @IBOutlet weak var zankin: UILabel!
+    
     @IBAction func prevBtn(_ sender: UIBarButtonItem) {
         prevMonth()
         set_data()  
@@ -55,6 +61,8 @@ class CalendarViewController: UIViewController, ViewLogic{
     
     
     @IBAction func data_renew(_ sender: Any) {//更新動作
+        var total_cost = 0
+        days = 0 //daysリセット
         let i = Check_data_string()  //過去にその年、月の有無確認
         
        
@@ -62,10 +70,22 @@ class CalendarViewController: UIViewController, ViewLogic{
         if(i > 0){//更新ボタンを押した年、月に入力された値が入る
             Savedata.save_string[i].keep_days_goraku[Uke.hiduke - 1] = Uke.goraku
             Savedata.save_string[i].keep_days_nitiyou[Uke.hiduke - 1] = Uke.nitiyo
-            print(Uke.nitiyo)
+            Savedata.save_string[i].koteihi = Uke.koteihi
+            Savedata.save_string[i].income = Uke.income
+            //print(Uke.nitiyo)
         }
         Uke.goraku = 0   //入力値リセット
         Uke.nitiyo = 0   //入力値リセット
+        thismonth_zankin = Uke.income
+        while(days < 31){
+            total_cost += Savedata.save_string[i].keep_days_goraku[days] + Savedata.save_string[i].keep_days_nitiyou[days]
+            
+            days += 1
+        }
+        total_cost += Savedata.save_string[i].koteihi
+        total_cost += Savedata.save_string[i].special
+        thismonth_zankin -= total_cost
+        zankin.text = String(thismonth_zankin)
     }
     
     //MARK: Initialize
@@ -139,7 +159,7 @@ class CalendarViewController: UIViewController, ViewLogic{
         //thisYear,Monthの時のみデータを写す(改善の余地あり)
         if(Savedata.save_string[keep_data_count - 1].month == thisMonth && Savedata.save_string[keep_data_count - 1].year == thisYear){
             Savedata.save_string[keep_data_count - 1] = Savedata.save_string[0]
-            //print("can") //確認用
+            print("can") //確認用
             //remove(Savedata.save_string[])
         }
     }

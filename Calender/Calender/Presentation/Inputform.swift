@@ -18,6 +18,7 @@ class Inputform: UIViewController {
     
     //ボタンを押したら保存
     @IBAction func keep_gorakuhi(_ sender: Any) {
+        Input_check()//中身の有無確認
         Uke.goraku = Int(Input_syuppi.text!)!
         Uke.hiduke = Int(Input_date.text!)!
         //Input_syuppi.text = "保存しました"
@@ -28,12 +29,51 @@ class Inputform: UIViewController {
     
     //ボタンを押したら保存
     @IBAction func keep_nitiyohi(_ sender: Any) {
+        Input_check()//中身の有無確認
         Uke.nitiyo = Int(Input_syuppi.text!)!
         Uke.hiduke = Int(Input_date.text!)!
         //Input_syuppi.text = "保存しました"
         //Thread.sleep(forTimeInterval: 1.0)
         Input_syuppi.text = ""
     }
+    
+    
+
+    @IBAction func kotei(_ sender: Any) {
+        Input_check()
+        Uke.koteihi = Int(Input_syuppi.text!)!
+        //日付保存なし
+        Input_syuppi.text = ""
+    }
+    
+
+    @IBAction func income(_ sender: Any) {
+        Input_check()
+        Uke.hiduke = Int(Input_date.text!)!
+        Uke.income = Int(Input_syuppi.text!)!
+        //日付保存なし
+        Input_syuppi.text = ""
+    }
+    
+
+    @IBAction func special(_ sender: Any) {
+        Input_check()
+        Uke.special = Int(Input_syuppi.text!)!
+        //日付保存なし
+        Input_syuppi.text = ""
+    }
+    
+    //中身の有無確認
+    func Input_check(){
+        if(Input_date.text == ""){
+            Input_date.text = String(0)
+        }
+        if(Input_syuppi.text == ""){
+            Input_syuppi.text = String(0)
+        }
+        return
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,15 +89,7 @@ class Inputform: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     //キーボードを閉じる
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

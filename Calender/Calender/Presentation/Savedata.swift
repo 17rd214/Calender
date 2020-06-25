@@ -12,6 +12,8 @@ class Savedata{//データ保存をする場所
          var keep_days_goraku = Array(repeating:0,count:31)
          var keep_days_nitiyou  = Array(repeating:0,count:31)
          var koteihi = 0
+         var income = 0
+         var special = 0
          var year = 0
          var month = 0
     }
