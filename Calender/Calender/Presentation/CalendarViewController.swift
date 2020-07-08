@@ -24,8 +24,7 @@ class CalendarViewController: UIViewController, ViewLogic{
     var keep_data_count = 0     //data_string(配列)の個数
     
     
-    //var now_year = 0        //現在いる場所の年数
-    //var now_month = 0       //現在いる場所の月
+    
     var days = 0            //keep_days_goraku,nitiyouを参照するための変数(0~31まで変化)
     
     var thismonth_zankin = 0
