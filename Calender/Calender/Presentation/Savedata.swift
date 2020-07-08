@@ -14,6 +14,7 @@ class Savedata{//データ保存をする場所
          var koteihi = 0
          var income = 0
          var special = 0
+         var shokuhi = 0
          var year = 0
          var month = 0
     }

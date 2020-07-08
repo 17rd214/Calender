@@ -14,20 +14,38 @@ class GraphViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        var i = 0
+        var n = 0
+        var total_nitiyou = 0
+        var total_goraku = 0
 
         // Do any additional setup after loading the view.
         
+        while true {
+            if(Savedata.save_string[i].year == Uke.now_year && Savedata.save_string[i].month == Uke.now_month) {
+                break
+            }
+            i += 1
+        }
+        
+        while n < 31{
+            total_goraku += Savedata.save_string[i].keep_days_goraku[n]
+            total_nitiyou += Savedata.save_string[i].keep_days_nitiyou[n]
+            n += 1
+        }
+        
         // 円グラフの中心に表示するタイトル
-        self.pieChartsView.centerText = "テストデータ"
+        self.pieChartsView.centerText = "月の出費"
         
         // グラフに表示するデータのタイトルと値
         let dataEntries = [
-            PieChartDataEntry(value: 40, label: "A"),
-            PieChartDataEntry(value: 35, label: "B"),
-            PieChartDataEntry(value: 25, label: "C")
+            PieChartDataEntry(value: Double(total_goraku), label: "娯楽"),
+            PieChartDataEntry(value: Double(total_nitiyou), label: "日用品"),
+            PieChartDataEntry(value: Double(Savedata.save_string[i].special), label: "特別"),
+            PieChartDataEntry(value: Double(Savedata.save_string[i].koteihi), label: "固定")
         ]
         
-        let dataSet = PieChartDataSet(entries: dataEntries, label: "テストデータ")
+        let dataSet = PieChartDataSet(entries: dataEntries, label: " ")
 
         // グラフの色
         dataSet.colors = ChartColorTemplates.vordiplom()
@@ -50,6 +68,7 @@ class GraphViewController: UIViewController {
         
         
     }
+    
     
 
 }

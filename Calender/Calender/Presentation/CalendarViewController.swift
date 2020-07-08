@@ -24,8 +24,8 @@ class CalendarViewController: UIViewController, ViewLogic{
     var keep_data_count = 0     //data_string(配列)の個数
     
     
-    var now_year = 0        //現在いる場所の年数
-    var now_month = 0       //現在いる場所の月
+    //var now_year = 0        //現在いる場所の年数
+    //var now_month = 0       //現在いる場所の月
     var days = 0            //keep_days_goraku,nitiyouを参照するための変数(0~31まで変化)
     
     var thismonth_zankin = 0
@@ -72,9 +72,20 @@ class CalendarViewController: UIViewController, ViewLogic{
         if(i >= 0){//更新ボタンを押した年、月に入力された値が入る
             Savedata.save_string[i].keep_days_goraku[Uke.hiduke - 1] = Uke.goraku
             Savedata.save_string[i].keep_days_nitiyou[Uke.hiduke - 1] = Uke.nitiyo
+            
+        
+            if(Uke.koteihi != 0){
             Savedata.save_string[i].koteihi = Uke.koteihi
+            }
+            if(Uke.income != 0){
             Savedata.save_string[i].income = Uke.income
+            }
+            if(Uke.special != 0){
             Savedata.save_string[i].special = Uke.special
+            }
+            if(Uke.shokuhi != 0){
+                Savedata.save_string[i].shokuhi = Uke.shokuhi
+            }
             //print(Uke.nitiyo)
         }
         
@@ -130,8 +141,8 @@ class CalendarViewController: UIViewController, ViewLogic{
         thisYear = date.year1
         thisMonth = date.month1
         today = date.day1
-        now_year = date.year1   //現在の年を記憶
-        now_month = date.month1     //現在の月を記憶
+        Uke.now_year = date.year1   //現在の年を記憶
+        Uke.now_month = date.month1     //現在の月を記憶
     }
 
     
@@ -141,10 +152,10 @@ class CalendarViewController: UIViewController, ViewLogic{
             return
         }
         
-        Savedata.save_string.append(Savedata.Datasave(keep_days_goraku: Array(repeating:0,count:31), keep_days_nitiyou: Array(repeating:0,count:31), koteihi: 0, income: 0, special: 0, year: 0, month: 0))
+        Savedata.save_string.append(Savedata.Datasave(keep_days_goraku: Array(repeating:0,count:31), keep_days_nitiyou: Array(repeating:0,count:31), koteihi: 0, income: 0, special: 0, shokuhi: 0, year: 0, month: 0))
         
-        Savedata.save_string[keep_data_count].year = now_year
-        Savedata.save_string[keep_data_count].month = now_month
+        Savedata.save_string[keep_data_count].year = Uke.now_year
+        Savedata.save_string[keep_data_count].month = Uke.now_month
         keep_data_count += 1
         print(Savedata.save_string[keep_data_count - 1].month)
         print(keep_data_count)
@@ -158,6 +169,9 @@ class CalendarViewController: UIViewController, ViewLogic{
         Uke.goraku = 0   //入力値リセット
         Uke.nitiyo = 0   //入力値リセット
         Uke.income = 0
+        Uke.special = 0
+        Uke.koteihi = 0
+        Uke.shokuhi = 0
         thismonth_zankin = Savedata.save_string[i].income
         days = 0
         while(days < 31){
@@ -168,6 +182,7 @@ class CalendarViewController: UIViewController, ViewLogic{
         }
         total_cost += Savedata.save_string[i].koteihi
         total_cost += Savedata.save_string[i].special
+        total_cost += Savedata.save_string[i].shokuhi
         thismonth_zankin -= total_cost
         zankin.text = String(thismonth_zankin)
     }
@@ -178,7 +193,7 @@ class CalendarViewController: UIViewController, ViewLogic{
         while(i < keep_data_count  ){
             //print(i)
             //print("check")
-            if(Savedata.save_string[i].year == now_year && Savedata.save_string[i].month == now_month ){
+            if(Savedata.save_string[i].year == Uke.now_year && Savedata.save_string[i].month == Uke.now_month ){
                 return i  //あった場合のその場所
                 
             }
@@ -209,8 +224,8 @@ extension CalendarViewController {
         title = "\(String(moveDate.year2))年\(String(moveDate.month2))月"
         isToday = thisYear == moveDate.year2 && thisMonth == moveDate.month2 ? true : false
         collectionView.reloadData()
-        now_year = moveDate.year2           //現在の年を記憶
-        now_month = moveDate.month2         //現在の月を記憶
+        Uke.now_year = moveDate.year2           //現在の年を記憶
+        Uke.now_month = moveDate.month2         //現在の月を記憶
     }
     
 }

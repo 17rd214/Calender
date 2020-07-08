@@ -13,4 +13,7 @@ class Uke{
     static var income: Int = 0
     static var special: Int = 0
     static var hiduke: Int = 0
+    static var shokuhi: Int = 0
+    static var now_year: Int = 0 //現在いる年
+    static var now_month: Int = 0 //現在いる月
 }

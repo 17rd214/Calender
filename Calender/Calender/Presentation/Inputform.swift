@@ -49,7 +49,7 @@ class Inputform: UIViewController {
 
     @IBAction func income(_ sender: Any) {
         Input_check()
-        Uke.hiduke = Int(Input_date.text!)!
+        //Uke.hiduke = Int(Input_date.text!)!
         Uke.income = Int(Input_syuppi.text!)!
         //日付保存なし
         Input_syuppi.text = ""
@@ -62,6 +62,14 @@ class Inputform: UIViewController {
         //日付保存なし
         Input_syuppi.text = ""
     }
+    
+    
+    @IBAction func shoku(_ sender: Any) {
+        Input_check()
+        Uke.shokuhi = Int(Input_syuppi.text!)!
+        Input_syuppi.text = ""
+    }
+    
     
     //中身の有無確認
     func Input_check(){

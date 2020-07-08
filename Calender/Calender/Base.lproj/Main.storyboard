@@ -60,15 +60,6 @@
                                     <segue destination="32R-tb-I7K" kind="show" id="vbW-Cg-ae6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIY-TQ-v2T">
-                                <rect key="frame" x="218" y="581" width="106" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="更新"/>
-                                <connections>
-                                    <action selector="data_renew:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Qp-fd-G6T"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="残金" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkg-eg-HtL">
                                 <rect key="frame" x="26" y="570" width="184" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -76,6 +67,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4K7-kM-FVc">
+                                <rect key="frame" x="312" y="599" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="グラフ"/>
+                                <connections>
+                                    <segue destination="iFR-tG-P4m" kind="show" id="LDu-YA-nCn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIY-TQ-v2T">
+                                <rect key="frame" x="173" y="581" width="106" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="更新"/>
+                                <connections>
+                                    <action selector="data_renew:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Qp-fd-G6T"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -205,6 +214,14 @@
                                     <action selector="special:" destination="32R-tb-I7K" eventType="touchUpInside" id="WuJ-lJ-5mf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A53-Jf-3xG">
+                                <rect key="frame" x="147" y="575" width="46" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="食費"/>
+                                <connections>
+                                    <action selector="shoku:" destination="32R-tb-I7K" eventType="touchUpInside" id="sDo-4v-nqm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="1nP-Nt-fid"/>
@@ -217,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pW1-Kq-nVC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1232.8" y="758.77061469265368"/>
+            <point key="canvasLocation" x="1232.8" y="757.87106446776613"/>
         </scene>
         <!--Graph View Controller-->
         <scene sceneID="4L4-er-hXr">
@@ -236,6 +253,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Sok-ZO-5Mw"/>
                     </view>
+                    <navigationItem key="navigationItem" id="OtQ-cn-HPO"/>
                     <connections>
                         <outlet property="pieChartsView" destination="NcQ-RB-DB7" id="Ab5-0r-ArK"/>
                     </connections>
