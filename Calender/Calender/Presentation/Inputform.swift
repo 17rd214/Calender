@@ -10,6 +10,8 @@ import UIKit
 class Inputform: UIViewController {
 
     
+    var days_select: Int?
+    
     
     @IBOutlet weak var Input_date: UITextField!
     
@@ -88,6 +90,7 @@ class Inputform: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        Input_date.text = String(days_select!)
         
         //キーボード変更(数字のみ)
         Input_date.keyboardType = UIKeyboardType.numberPad

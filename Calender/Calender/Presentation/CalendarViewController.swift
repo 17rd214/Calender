@@ -23,7 +23,9 @@ class CalendarViewController: UIViewController, ViewLogic{
     
     var keep_data_count = 0     //data_string(配列)の個数
     
+    var empty_count = 0 //日にちを表示しない場所の数
     
+    var select_days = 0 //選んだ日付
     
     var days = 0            //keep_days_goraku,nitiyouを参照するための変数(0~31まで変化)
     
@@ -50,6 +52,7 @@ class CalendarViewController: UIViewController, ViewLogic{
         //print("prevbtn")
         set_zankin()
         days = 0   //daysリセット
+        empty_count = 0 //空白日数リセット
     }
     @IBAction func nextBtn(_ sender: UIBarButtonItem) {
         nextMonth()
@@ -57,6 +60,7 @@ class CalendarViewController: UIViewController, ViewLogic{
         //print("nextBtn")
         set_zankin()
         days = 0    //daysリセット
+        empty_count = 0 //空白日数リセット
     }
     
     
@@ -256,14 +260,17 @@ extension CalendarViewController: UICollectionViewDataSource {
         default: label.textColor = .black
         }
     }
-    //データを入力し表示させる
+    //データを表示させる
     private func showDate(_ section: Int, _ row: Int, _ cell: UICollectionViewCell, _ label: UILabel) {
         switch section {
         case 0:
             label.text = dayOfWeekLabel[row]
             cell.selectedBackgroundView = nil
         default:
-            if(daysArray2[row] != ""){
+            if(daysArray2[row] == "" && days == 0){
+                empty_count += 1
+            }
+            else if(daysArray2[row] != ""){
                 let i = Check_data_string()
                 //daysArray2に入力データを追加する
                 if(i >= 0 && i < keep_data_count){
@@ -271,6 +278,8 @@ extension CalendarViewController: UICollectionViewDataSource {
                 daysArray2[row] = daysArray2[row] + "\n" +  String(Savedata.save_string[i].keep_days_goraku[days] + Savedata.save_string[i].keep_days_nitiyou[days])
                 days += 1
                 }
+                
+                
             }
             label.text = daysArray2[row]
             label.numberOfLines = 0
@@ -288,6 +297,32 @@ extension CalendarViewController: UICollectionViewDataSource {
             label.backgroundColor = .myLightRed()
         }
     }
+    
+    // Cell が選択された場合
+    func collectionView(_ collectionView: UICollectionView,
+                             didSelectItemAt indexPath: IndexPath) {
+    
+        //var select = daysArray2[indexPath.row]
+        //選んだ日付
+        
+         select_days = indexPath.row - empty_count
+         select_days += 1
+        // Inputformへ遷移するために Segue を呼び出す
+        if(daysArray2[indexPath.row] != ""){
+        performSegue(withIdentifier: "toInputform",sender: nil)
+        }
+    }
+    
+    // Segue 準備
+       override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+           if (segue.identifier == "toInputform") {
+               let If: Inputform = (segue.destination as? Inputform)!
+    
+               // SubViewController のselectedImgに選択された画像を設定する
+               If.days_select = select_days
+           }
+       }
+    
     
 }
 
