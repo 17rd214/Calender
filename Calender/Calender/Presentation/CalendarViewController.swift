@@ -48,17 +48,15 @@ class CalendarViewController: UIViewController, ViewLogic{
     
     @IBAction func prevBtn(_ sender: UIBarButtonItem) {
         prevMonth()
-        set_data()  
-        //print("prevbtn")
-        set_zankin()
+        set_data()  //新たにその月の保存領域を設定
+        set_zankin() //月の残額表示
         days = 0   //daysリセット
         empty_count = 0 //空白日数リセット
     }
     @IBAction func nextBtn(_ sender: UIBarButtonItem) {
         nextMonth()
-        set_data()
-        //print("nextBtn")
-        set_zankin()
+        set_data() //新たにその月の保存領域を設定
+        set_zankin() //月の残額表示
         days = 0    //daysリセット
         empty_count = 0 //空白日数リセット
     }
@@ -91,8 +89,11 @@ class CalendarViewController: UIViewController, ViewLogic{
             }
             //print(Uke.nitiyo)
         }
-        
-        //commonSettingMoveMonth()
+        set_zankin() //月の残額表示
+        days = 0    //daysリセット
+        empty_count = 0 //空白日数リセット
+       
+        commonSettingMoveMonth()
     }
     
     //MARK: Initialize
