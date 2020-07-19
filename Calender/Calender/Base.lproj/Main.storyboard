@@ -152,16 +152,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27p-Hn-k37">
-                                <rect key="frame" x="119" y="378" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="娯楽"/>
-                                <connections>
-                                    <action selector="keep_gorakuhi:" destination="32R-tb-I7K" eventType="touchUpInside" id="hYT-JG-7bG"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMf-zQ-sl7">
-                                <rect key="frame" x="252" y="375" width="46" height="30"/>
+                                <rect key="frame" x="134" y="389" width="102" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="日用品"/>
                                 <connections>
@@ -183,7 +175,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwe-bn-fxG">
-                                <rect key="frame" x="99" y="467" width="77" height="30"/>
+                                <rect key="frame" x="134" y="431" width="102" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="月の固定費"/>
                                 <connections>
@@ -191,7 +183,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iN2-rs-Tm9">
-                                <rect key="frame" x="245" y="479" width="31" height="30"/>
+                                <rect key="frame" x="136" y="297" width="102" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="収入"/>
                                 <connections>
@@ -199,7 +191,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaQ-Th-432">
-                                <rect key="frame" x="21" y="394" width="46" height="30"/>
+                                <rect key="frame" x="136" y="481" width="102" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="特別費"/>
                                 <connections>
@@ -207,11 +199,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A53-Jf-3xG">
-                                <rect key="frame" x="147" y="575" width="46" height="47"/>
+                                <rect key="frame" x="136" y="334" width="102" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="食費"/>
                                 <connections>
                                     <action selector="shoku:" destination="32R-tb-I7K" eventType="touchUpInside" id="sDo-4v-nqm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27p-Hn-k37">
+                                <rect key="frame" x="134" y="534" width="102" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="娯楽"/>
+                                <connections>
+                                    <action selector="keep_gorakuhi:" destination="32R-tb-I7K" eventType="touchUpInside" id="hYT-JG-7bG"/>
                                 </connections>
                             </button>
                         </subviews>

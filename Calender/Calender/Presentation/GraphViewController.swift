@@ -42,7 +42,8 @@ class GraphViewController: UIViewController {
             PieChartDataEntry(value: Double(total_goraku), label: "娯楽"),
             PieChartDataEntry(value: Double(total_nitiyou), label: "日用品"),
             PieChartDataEntry(value: Double(Savedata.save_string[i].special), label: "特別"),
-            PieChartDataEntry(value: Double(Savedata.save_string[i].koteihi), label: "固定")
+            PieChartDataEntry(value: Double(Savedata.save_string[i].koteihi), label: "固定"),
+            PieChartDataEntry(value: Double(Savedata.save_string[i].shokuhi), label: "食費")
         ]
         
         let dataSet = PieChartDataSet(entries: dataEntries, label: " ")
